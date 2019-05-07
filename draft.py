@@ -1,39 +1,6 @@
 import time, datetime
 
 
-class Result:
-    def __init__(self, date, home, away, score):
-        self.date = date
-        self.home = home
-        self.away = away
-        self.score = score
-        half1 = self.score.split()[1].strip('()')
-        game = self.score.split()[0]
-        half2 = str(int(game[0]) - int(half1[0])) + ':' + str(int(game[2]) - int(half1[2]))
-
-        home.scored = game[0]
-        home.scored1 = half1[0]
-        home.scored2 = half2[0]
-        away.scored = game[2]
-        away.scored1 = half1[2]
-        away.scored2 = half2[2]
-
-        home.conceded = away.scored
-        home.conceded1 = away.scored1
-        home.conceded2 = away.scored2
-        away.conceded = home.scored
-        away.conceded1 = home.scored1
-        away.conceded2 = home.scored2
-
-        total = int(home.scored) + int(away.scored)
-        total1 = int(home.scored1) + int(away.scored1)
-        total2 = int(home.scored2) + int(away.scored2)
-
-        result = int(home.scored) - int(away.scored)
-        result1 = int(home.scored1) - int(away.scored1)
-        result2 = int(home.scored2) - int(away.scored2)
-
-
 class Team:
     champ = 'Bundesliga'
     country = 'Germany'
@@ -46,7 +13,7 @@ class Team:
         self.name = name
         self.meetings = []
         self.score = ''
-        self.result = []
+        self.game_result = []
 
     def game_score(self):
         for game in self.meetings:
@@ -58,6 +25,12 @@ class Team:
             first_half_score = game[4]
             second_half_score = str(int(total_score[0]) - int(first_half_score[0])) + \
                                 ':' + str(int(total_score[2]) - int(first_half_score[2]))
+            total = str(int(total_score[0]) + int(total_score[2]))
+            total_first_half = str(int(first_half_score[0]) + int(first_half_score[2]))
+            total_second_half = str(int(second_half_score[0]) + int(second_half_score[2]))
+            result = str(int(total_score[0]) - int(total_score[2]))
+            result_first_half = str(int(first_half_score[0]) - int(first_half_score[2]))
+            result_second_half = str(int(second_half_score[0]) - int(second_half_score[2]))
 
             if self.name == home:
                 self.place = "home"
@@ -83,15 +56,18 @@ class Team:
                        "first_half_score": first_half_score, "second_half_score": second_half_score,
                        "self.scored": self.scored, "self.scored1": self.scored1, "self.scored2": self.scored2,
                        "self.conceded": self.conceded, "self.conceded1": self.conceded1,
-                       "self.conceded2": self.conceded2, "self.place": self.place
+                       "self.conceded2": self.conceded2, "self.place": self.place, "total": total,
+                       "total_first_half": total_first_half, "total_second_half": total_second_half,
+                       "result": result, "result_first_half": result_first_half,
+                       "result_second_half": result_second_half
                        })
-            self.result.append(d1)
-        return self.result
+            self.game_result.append(d1)
+        return self.game_result
 
     def series_above(self, param, above):
         count = 0
         self.series_list = []
-        for game in self.result:
+        for game in self.game_result:
             if above == ">":
                 if float(game["self.scored"]) > param:
                     count += 1
