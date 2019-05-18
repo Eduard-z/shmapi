@@ -38,10 +38,10 @@ for each in Team.teams:
     for game in Team.meetings:
         if each.name == game[1] or each.name == game[2]:
             each.meetings.append(game)
-print(M_gladbach.meetings)
+print(M_gladbach.meetings)  # test
 
-print(Cologne.game_score())
-print(Cologne.series_above(0.5, ">"))
+print(Dortmund.game_score())  # test
+print(Dortmund.series_above("self.scored", 0.5, ">", "away"))  # test
 
 
 """

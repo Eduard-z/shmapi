@@ -64,26 +64,65 @@ class Team:
             self.game_result.append(d1)
         return self.game_result
 
-    def series_above(self, param, above):
+    def series_above(self, indicator, param, above, place="all"):
         count = 0
         self.series_list = []
         for game in self.game_result:
-            if above == ">":
-                if float(game["self.scored"]) > param:
-                    count += 1
-                    self.series_list.append('+')
-                else:
-                    # count = 0
-                    self.series_list.append('-')
-            elif above == "<":
-                if float(game["self.scored"]) < param:
-                    count += 1
-                    self.series_list.append('+')
-                else:
-                    # count = 0
-                    self.series_list.append('-')
+            if place == "all":
+                if above == ">":
+                    if float(game[indicator]) > param:
+                        count += 1
+                        self.series_list.append('+')
+                    else:
+                        # count = 0
+                        self.series_list.append('-')
+                elif above == "<":
+                    if float(game[indicator]) < param:
+                        count += 1
+                        self.series_list.append('+')
+                    else:
+                        # count = 0
+                        self.series_list.append('-')
+            elif place == "home":
+                if above == ">":
+                    if float(game[indicator]) > param and game["home"] == self.name:
+                        count += 1
+                        self.series_list.append('+')
+                    elif float(game[indicator]) > param and game["home"] != self.name:
+                        pass
+                    elif float(game[indicator]) < param and game["home"] == self.name:
+                        # count = 0
+                        self.series_list.append('-')
+                elif above == "<":
+                    if float(game[indicator]) < param and game["home"] == self.name:
+                        count += 1
+                        self.series_list.append('+')
+                    elif float(game[indicator]) < param and game["home"] != self.name:
+                        pass
+                    elif float(game[indicator]) > param and game["home"] == self.name:
+                        # count = 0
+                        self.series_list.append('-')
+            elif place == "away":
+                if above == ">":
+                    if float(game[indicator]) > param and game["away"] == self.name:
+                        count += 1
+                        self.series_list.append('+')
+                    elif float(game[indicator]) > param and game["away"] != self.name:
+                        pass
+                    elif float(game[indicator]) < param and game["away"] == self.name:
+                        # count = 0
+                        self.series_list.append('-')
+                elif above == "<":
+                    if float(game[indicator]) < param and game["away"] == self.name:
+                        count += 1
+                        self.series_list.append('+')
+                    elif float(game[indicator]) < param and game["away"] != self.name:
+                        pass
+                    elif float(game[indicator]) > param and game["away"] == self.name:
+                        # count = 0
+                        self.series_list.append('-')
 
-        if len(self.series_list) - count < 2:
+        if len(self.series_list) - count <= 2:
             return self.series_list, len(self.series_list), count
         else:
             return "cunt", count
