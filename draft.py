@@ -28,9 +28,18 @@ class Team:
             total = str(int(total_score[0]) + int(total_score[2]))
             total_first_half = str(int(first_half_score[0]) + int(first_half_score[2]))
             total_second_half = str(int(second_half_score[0]) + int(second_half_score[2]))
-            result = str(int(total_score[0]) - int(total_score[2]))
-            result_first_half = str(int(first_half_score[0]) - int(first_half_score[2]))
-            result_second_half = str(int(second_half_score[0]) - int(second_half_score[2]))
+
+            if self.name == home:
+                self.place = "home"
+                self.result = str(int(total_score[0]) - int(total_score[2]))
+                self.result_first_half = str(int(first_half_score[0]) - int(first_half_score[2]))
+                self.result_second_half = str(int(second_half_score[0]) - int(second_half_score[2]))
+
+            if self.name == away:
+                self.place = "away"
+                self.result = str(int(total_score[2]) - int(total_score[0]))
+                self.result_first_half = str(int(first_half_score[2]) - int(first_half_score[0]))
+                self.result_second_half = str(int(second_half_score[2]) - int(second_half_score[0]))
 
             if self.name == home:
                 self.place = "home"
@@ -58,8 +67,8 @@ class Team:
                        "self.conceded": self.conceded, "self.conceded1": self.conceded1,
                        "self.conceded2": self.conceded2, "self.place": self.place, "total": total,
                        "total_first_half": total_first_half, "total_second_half": total_second_half,
-                       "result": result, "result_first_half": result_first_half,
-                       "result_second_half": result_second_half
+                       "self.result": self.result, "self.result_first_half": self.result_first_half,
+                       "self.result_second_half": self.result_second_half
                        })
             self.game_result.append(d1)
         return self.game_result

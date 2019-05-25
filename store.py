@@ -41,7 +41,27 @@ for each in Team.teams:
 print(M_gladbach.meetings)  # test
 
 print(Dortmund.game_score())  # test
-print(Dortmund.series_above("self.scored", 0.5, ">", "away"))  # test
+for indicator in ["self.scored", "self.scored1", "self.scored2", "self.conceded", "self.conceded1", "self.conceded2",
+                  "total_first_half", "total_second_half"]:
+    for param in [0.5, 1.5]:
+        for above in [">", "<"]:
+            for place in ["all", "home", "away"]:
+                if len(Dortmund.series_above(indicator, param, above, place)) > 2:
+                    print(Dortmund.series_above(indicator, param, above, place), indicator, above, param, place)  # test
+
+for indicator in ["total"]:
+    for param in [1.5, 2.5, 3.5]:
+        for above in [">", "<"]:
+            for place in ["all", "home", "away"]:
+                if len(Dortmund.series_above(indicator, param, above, place)) > 2:
+                    print(Dortmund.series_above(indicator, param, above, place), indicator, above, param, place)  # test
+
+for indicator in ["self.result", "self.result_first_half", "self.result_second_half"]:
+    for param in [0.5, 1.5, -0.5, -1.5]:
+        for above in [">", "<"]:
+            for place in ["all", "home", "away"]:
+                if len(Dortmund.series_above(indicator, param, above, place)) > 2:
+                    print(Dortmund.series_above(indicator, param, above, place), indicator, above, param, place)  # test
 
 
 """
