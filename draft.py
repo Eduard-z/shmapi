@@ -28,6 +28,9 @@ class Team:
             total = str(int(total_score[0]) + int(total_score[2]))
             total_first_half = str(int(first_half_score[0]) + int(first_half_score[2]))
             total_second_half = str(int(second_half_score[0]) + int(second_half_score[2]))
+            both_scored = str(int(total_score[0]) * int(total_score[2]))
+            both_scored_first_half = str(int(first_half_score[0]) * int(first_half_score[2]))
+            both_scored_second_half = str(int(second_half_score[0]) * int(second_half_score[2]))
 
             if self.name == home:
                 self.place = "home"
@@ -68,7 +71,9 @@ class Team:
                        "self.conceded2": self.conceded2, "self.place": self.place, "total": total,
                        "total_first_half": total_first_half, "total_second_half": total_second_half,
                        "self.result": self.result, "self.result_first_half": self.result_first_half,
-                       "self.result_second_half": self.result_second_half
+                       "self.result_second_half": self.result_second_half, "both_scored": both_scored,
+                       "both_scored_first_half": both_scored_first_half,
+                       "both_scored_second_half": both_scored_second_half
                        })
             self.game_result.append(d1)
         return self.game_result
@@ -131,8 +136,10 @@ class Team:
                         # count = 0
                         self.series_list.append('-')
 
-        if len(self.series_list) - count <= 2:
-            return self.series_list, len(self.series_list), count
+        if len(self.series_list) - count == 0:
+            return "SERIES", self.series_list, len(self.series_list), count
+        elif len(self.series_list) - count <= 2: #and self.series_list[-1] == "-":
+            return "CUT_SERIES", self.series_list, len(self.series_list), count
         else:
             return "cunt", count
 
