@@ -136,9 +136,9 @@ class Team:
                         # count = 0
                         self.series_list.append('-')
 
-        if len(self.series_list) - count == 0:
+        if len(self.series_list) - count == 0 and len(self.series_list) > 5:
             return "SERIES", self.series_list, len(self.series_list), count
-        elif len(self.series_list) - count <= 2: #and self.series_list[-1] == "-":
+        elif len(self.series_list) - count <= 2 and len(self.series_list) > 5 and self.series_list[-1] == "-":
             return "CUT_SERIES", self.series_list, len(self.series_list), count
         else:
             return "cunt", count

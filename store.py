@@ -1,15 +1,15 @@
 import re
 from draft import Team
 
-file = open('htm.txt', encoding='utf-8')
+file = open(r'C:\Users\Admin\Desktop\belarus.txt', encoding='utf-8')
 list_of_teams = set()
 for line in file:
     game = re.split("[(\t\-)\n\xa0]+", line)
     game[1] = game[1].strip()
     game[2] = game[2].strip()
     game.remove('')
-#    print(game)
-#    break
+    # print(game)
+    # break
     Team.meetings.append(game)
     list_of_teams.add(game[1])  # list of team names
 Team.meetings.reverse()
