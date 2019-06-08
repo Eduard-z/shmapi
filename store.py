@@ -1,10 +1,10 @@
 import re
 from draft import Team
 
-file = open(r'C:\Users\Admin\Desktop\belarus.txt', encoding='utf-8')
+file = open(r'C:\Users\Admin\Desktop\soccer\belarus.txt', encoding='utf-8')
 list_of_teams = set()
 for line in file:
-    game = re.split("[(\t\-)\n\xa0]+", line)
+    game = re.split("\t|\s\-\s|\W\(|\)|\n", line)
     game[1] = game[1].strip()
     game[2] = game[2].strip()
     game.remove('')
@@ -58,7 +58,8 @@ for each in Team.teams:
             for above in [">", "<"]:
                 for place in ["all", "home", "away"]:
                     if len(each.series_above(indicator, param, above, place)) > 2:
-                        print(each.series_above(indicator, param, above, place), each.name, indicator, above, param, place)
+                        print(each.series_above(indicator, param, above, place), each.name, indicator, above, param,
+                              place)
 
     for indicator in ["self.scored", "self.conceded", "total_first_half", "total_second_half"]:
         for param in [1.5]:
