@@ -1,9 +1,9 @@
 import re
 from draft import Team
 
-list_of_champs = ['belarus', 'brazilA', 'brazilB', 'china', 'estonia', 'finland', 'finland2', 'iceland1',
+list_of_champs = ['belarus', 'brazilA', 'brazilB', 'china', 'finland', 'finland2', 'iceland1',
                   'icelandP', 'indonesia', 'ireland1', 'irelandP', 'japan', 'japan2', 'kazahstan', 'koreaK', 'koreaKC',
-                  'latvia', 'lithuania', 'malaysia', 'MLS', 'moldova', 'norway2', 'norwayP', 'singapur', 'sweden2',
+                  'latvia', 'lithuania', 'MLS', 'moldova', 'norway2', 'norwayP', 'singapur', 'sweden2',
                   'swedenP', 'thailand', 'vietnam']
 
 for championship in list_of_champs:
