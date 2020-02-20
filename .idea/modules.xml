@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../selenium_course/.idea/selenium_course.iml" filepath="$PROJECT_DIR$/../selenium_course/.idea/selenium_course.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/shmapi.iml" filepath="$PROJECT_DIR$/.idea/shmapi.iml" />
     </modules>
   </component>
