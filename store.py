@@ -1,10 +1,8 @@
 import re
 from draft import Team
 
-list_of_champs = ['belarus', 'brazilA', 'brazilB', 'china', 'finland', 'finland2', 'iceland1',
-                  'icelandP', 'indonesia', 'ireland1', 'irelandP', 'japan', 'japan2', 'kazahstan', 'koreaK', 'koreaKC',
-                  'latvia', 'lithuania', 'MLS', 'moldova', 'norway2', 'norwayP', 'singapur', 'sweden2',
-                  'swedenP', 'thailand', 'vietnam']
+list_of_champs = ['APL', 'championship', 'league1', 'league2', 'bundesliga', 'bundesliga2', 'bundesliga3',
+                  'france', 'france2', 'france3', 'italyA', 'italyB', 'spain adelante', 'spain primera']
 
 for championship in list_of_champs:
     print('\n', file=open(r'C:\Users\Admin\Desktop\test_belarus.txt', 'a', encoding='utf-8'))
